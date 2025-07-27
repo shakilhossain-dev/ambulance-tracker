@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:ambulance_tracker/Components/text_field_container.dart';
 import 'package:ambulance_tracker/constants.dart';
@@ -8,10 +7,10 @@ class RoundedInputField extends StatelessWidget {
   final IconData icon;
   final ValueChanged<String> onChanged;
   const RoundedInputField({
-    Key key,
-    this.hintText,
+    Key? key,
+    required this.hintText,
     this.icon = Icons.person,
-    this.onChanged,
+    required this.onChanged,
   }) : super(key: key);
 
   @override

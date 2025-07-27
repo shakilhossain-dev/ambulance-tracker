@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sliding_switch/sliding_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
 class DriverPage extends StatefulWidget {
   const DriverPage({Key? key}) : super(key: key);
 
@@ -30,9 +29,8 @@ class _DriverPageState extends State<DriverPage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text("Driver page"),
-          backgroundColor: Color.fromRGBO(143, 148, 251, 1),
-
+        title: Text("Driver page"),
+        backgroundColor: Color.fromRGBO(143, 148, 251, 1),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,14 +39,8 @@ class _DriverPageState extends State<DriverPage> {
             Row(
               children: [
                 Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width - 40,
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height / 8,
+                  width: MediaQuery.of(context).size.width - 40,
+                  height: MediaQuery.of(context).size.height / 8,
                   child: Card(
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -79,6 +71,30 @@ class _DriverPageState extends State<DriverPage> {
                     style: TextStyle(fontSize: 20),
                   ),
                   SlidingSwitch(
+                    onSwipe: () {
+                      isAvailable = !isAvailable;
+                      if (isAvailable) isWorking = false;
+                      setState(() {
+                        isAvailable;
+                        isWorking;
+                      });
+                    },
+                    onDoubleTap: () {
+                      isAvailable = !isAvailable;
+                      if (isAvailable) isWorking = false;
+                      setState(() {
+                        isAvailable;
+                        isWorking;
+                      });
+                    },
+                    onTap: (bool value) {
+                      isAvailable = !value;
+                      if (isAvailable) isWorking = false;
+                      setState(() {
+                        isAvailable;
+                        isWorking;
+                      });
+                    },
                     value: false,
                     width: 200,
                     onChanged: (bool value) {
@@ -89,14 +105,11 @@ class _DriverPageState extends State<DriverPage> {
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           textColor: Colors.white,
-                          fontSize: 16.0
-                      );
+                          fontSize: 16.0);
                     },
                   ),
-
                 ],
               ),
-
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,25 +129,42 @@ class _DriverPageState extends State<DriverPage> {
                       isAvailable;
                     });
                   },
+                  onTap: (bool value) {
+                    isWorking = !value;
+                    if (isWorking) isAvailable = false;
+                    setState(() {
+                      isWorking;
+                      isAvailable;
+                    });
+                  },
+                  onDoubleTap: () {
+                    isWorking = !isWorking;
+                    if (isWorking) isAvailable = false;
+                    setState(() {
+                      isWorking;
+                      isAvailable;
+                    });
+                  },
+                  onSwipe: () {
+                    isWorking = !isWorking;
+                    if (isWorking) isAvailable = false;
+                    setState(() {
+                      isWorking;
+                      isAvailable;
+                    });
+                  },
                 ),
-
               ],
             ),
             Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width - 20,
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height / 2,
+              width: MediaQuery.of(context).size.width - 20,
+              height: MediaQuery.of(context).size.height / 2,
               child: !isWorking
                   ? patientData()
                   : Card(
-                child: Image.network(
-                    "https://img.freepik.com/free-vector/lazy-raccoon-sleeping-cartoon_125446-631.jpg?size=338&ext=jpg"),
-              ),
+                      child: Image.network(
+                          "https://img.freepik.com/free-vector/lazy-raccoon-sleeping-cartoon_125446-631.jpg?size=338&ext=jpg"),
+                    ),
             )
           ],
         ),
@@ -159,26 +189,26 @@ class _DriverPageState extends State<DriverPage> {
       },
       child: Card(
           child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "Current Patient",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Image.network(
-                  "https://www.zyrgon.com/wp-content/uploads/2019/06/googlemaps-Zyrgon.jpg"),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(address),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("Location: 0, 0"),
-              ),
-            ],
-          )),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              "Current Patient",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          Image.network(
+              "https://www.zyrgon.com/wp-content/uploads/2019/06/googlemaps-Zyrgon.jpg"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(address),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Location: 0, 0"),
+          ),
+        ],
+      )),
     );
   }
 

@@ -1,24 +1,18 @@
 import 'dart:async';
 
-import 'package:location/location.dart';
-import 'package:geocoder/geocoder.dart';
+import 'package:location/location.dart' as loc;
 import 'package:intl/intl.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geocoding/geocoding.dart';
 
-late LocationData _currentPosition;
-String _address = "";
+late loc.LocationData _currentPosition;
 late GoogleMapController mapController;
 late Marker marker;
-Location location = Location();
-late CameraPosition _cameraPosition =
-    CameraPosition(target: LatLng(0, 0), zoom: 10.0);
-
-LatLng _initialcameraposition = LatLng(0.5937, 0.9629);
+loc.Location location = loc.Location();
 
 Future<String> getLoc() async {
-
   bool _serviceEnabled;
-  PermissionStatus _permissionGranted;
+  loc.PermissionStatus _permissionGranted;
 
   _serviceEnabled = await location.serviceEnabled();
   if (!_serviceEnabled) {
@@ -29,9 +23,9 @@ Future<String> getLoc() async {
   }
 
   _permissionGranted = await location.hasPermission();
-  if (_permissionGranted == PermissionStatus.denied) {
+  if (_permissionGranted == loc.PermissionStatus.denied) {
     _permissionGranted = await location.requestPermission();
-    if (_permissionGranted != PermissionStatus.granted) {
+    if (_permissionGranted != loc.PermissionStatus.granted) {
       return "null";
     }
   }
@@ -44,24 +38,19 @@ Future<String> getLoc() async {
   details += "";
   details += DateFormat('EEE d MMM kk:mm:ss ').format(now);
 
-  _initialcameraposition =
-      LatLng(_currentPosition.latitude!, _currentPosition.longitude!);
+  // Use geocoding package for reverse geocoding
+  List<Placemark> placemarks = await placemarkFromCoordinates(
+      _currentPosition.latitude!, _currentPosition.longitude!);
+  String addressLine = placemarks.isNotEmpty
+      ? "${placemarks.first.street}, ${placemarks.first.locality}, ${placemarks.first.country}"
+      : "";
 
-  _getAddress(_currentPosition.latitude!, _currentPosition.longitude!)
-      .then((value) {
-    _address = value.first.addressLine;
-  });
   details += "{}";
-  details += _currentPosition.latitude.toString()+" , "+_currentPosition.longitude.toString();
+  details += _currentPosition.latitude.toString() +
+      " , " +
+      _currentPosition.longitude.toString();
   details += "{}";
-  details += _address;
+  details += addressLine;
 
   return details;
-}
-
-Future<List<Address>> _getAddress(double lat, double lang) async {
-  final coordinates = new Coordinates(lat, lang);
-  List<Address> add =
-      await Geocoder.local.findAddressesFromCoordinates(coordinates);
-  return add;
 }

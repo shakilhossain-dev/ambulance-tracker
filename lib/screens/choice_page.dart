@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:ambulance_tracker/Animation/FadeAnimation.dart';
 import 'package:ambulance_tracker/screens/patient_page.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +113,7 @@ class ChoicePage extends StatelessWidget {
                                   Color.fromRGBO(143, 148, 251, .6),
                                 ])),
                             child: Center(
-                              child: FlatButton(
+                              child: TextButton(
                                   onPressed: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -143,7 +142,7 @@ class ChoicePage extends StatelessWidget {
                                   Color.fromRGBO(143, 148, 251, .6),
                                 ])),
                             child: Center(
-                              child: FlatButton(
+                              child: TextButton(
                                   onPressed: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -172,7 +171,7 @@ class ChoicePage extends StatelessWidget {
                                   Color.fromRGBO(143, 148, 251, .6),
                                 ])),
                             child: Center(
-                              child: FlatButton(
+                              child: TextButton(
                                   onPressed: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(

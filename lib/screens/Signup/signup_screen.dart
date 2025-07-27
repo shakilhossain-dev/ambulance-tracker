@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:ambulance_tracker/constants.dart';
 import 'package:ambulance_tracker/screens/Login/login_screen.dart';
@@ -11,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,9 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
+
 class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -32,13 +34,9 @@ class Body extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
             ),
             SizedBox(height: size.height * 0.03),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              child: Image.asset(
-                "assets/images/hands.png",
-                width: size.width * 0.7,
-              ),
+            Image.asset(
+              "assets/images/hands.png",
+              width: size.width * 0.7,
             ),
             RoundedInputField(
               hintText: "Your Email",
@@ -71,24 +69,19 @@ class Body extends StatelessWidget {
     );
   }
 }
+
 class Background extends StatelessWidget {
   final Widget child;
-  const Background({
-    Key key,
-    @required this.child,
-  }) : super(key: key);
-
+  const Background({Key? key, required this.child}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
       height: size.height,
       width: double.infinity,
-      // Here i can use size.width but use double.infinity because both work as a same
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-
           Positioned(
             bottom: 0,
             left: 0,
@@ -140,17 +133,11 @@ class OrDivider extends StatelessWidget {
   }
 }
 
-
-
 class SocalIcon extends StatelessWidget {
   final String iconSrc;
-  final Function press;
-  const SocalIcon({
-    Key key,
-    this.iconSrc,
-    this.press,
-  }) : super(key: key);
-
+  final VoidCallback? press;
+  const SocalIcon({Key? key, required this.iconSrc, this.press})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -174,5 +161,3 @@ class SocalIcon extends StatelessWidget {
     );
   }
 }
-
-

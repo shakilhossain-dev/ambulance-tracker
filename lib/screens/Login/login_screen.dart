@@ -1,11 +1,7 @@
-
-// @dart=2.9
 import 'package:ambulance_tracker/Animation/FadeAnimation.dart';
 import 'package:ambulance_tracker/screens/choice_page.dart';
 import 'package:ambulance_tracker/screens/patient_page.dart';
 import 'package:flutter/material.dart';
-
-
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -104,19 +100,18 @@ class LoginScreen extends StatelessWidget {
                               children: <Widget>[
                                 Container(
                                   padding: EdgeInsets.all(8.0),
-
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
-                                    //border: Border(bottom: BorderSide(color: Colors.grey[400]))!
-                                  ),
+                                      //border: Border(bottom: BorderSide(color: Colors.grey[400]))!
+                                      ),
                                   child: TextField(
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Email or Phone number",
                                         hintStyle:
-                                        TextStyle(color: Colors.grey[400])),
+                                            TextStyle(color: Colors.grey[400])),
                                   ),
                                 ),
                                 Container(
@@ -126,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                                         border: InputBorder.none,
                                         hintText: "Password",
                                         hintStyle:
-                                        TextStyle(color: Colors.grey[400])),
+                                            TextStyle(color: Colors.grey[400])),
                                   ),
                                 )
                               ],
@@ -146,19 +141,40 @@ class LoginScreen extends StatelessWidget {
                                   Color.fromRGBO(143, 148, 251, .6),
                                 ])),
                             child: Center(
-                              child: FlatButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                ChoicePage()));
-                                  },
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  padding: EdgeInsets.zero,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          ChoicePage(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    gradient: LinearGradient(colors: [
+                                      Color.fromRGBO(143, 148, 251, 1),
+                                      Color.fromRGBO(143, 148, 251, .6),
+                                    ]),
+                                  ),
                                   child: Text(
                                     "Login",
                                     style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  )),
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           )),
                       SizedBox(
@@ -169,7 +185,8 @@ class LoginScreen extends StatelessWidget {
                           Text(
                             "Forgot Password?",
                             style: TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
+                              color: Color.fromRGBO(143, 148, 251, 1),
+                            ),
                           )),
                     ],
                   ),

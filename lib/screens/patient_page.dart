@@ -26,7 +26,6 @@ class _PatientPageState extends State<PatientPage> {
   Widget build(BuildContext context) {
     currentLoc();
 
-
     try {
       loc[0];
     } catch (e) {
@@ -42,22 +41,23 @@ class _PatientPageState extends State<PatientPage> {
             child: Column(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              RaisedButton(
-                  child: Text("Refresh location"),
-                  onPressed: () async {
-                    currentLoc();
+              ElevatedButton(
+                child: Text("Refresh location"),
+                onPressed: () async {
+                  currentLoc();
 
-                    date_time = currLoc.split("{}")[0];
-                    address = currLoc.split("{}")[2];
-                    loc = currLoc.split("{}")[1].split(" , ");
+                  date_time = currLoc.split("{}")[0];
+                  address = currLoc.split("{}")[2];
+                  loc = currLoc.split("{}")[1].split(" , ");
 
-                    setState(() {
-                      currLoc;
-                      date_time;
-                      address;
-                      loc;
-                    });
-                  }),
+                  setState(() {
+                    currLoc;
+                    date_time;
+                    address;
+                    loc;
+                  });
+                },
+              ),
               Card(
                 child: Column(
                   //mainAxisAlignment: MainAxisAlignment.start,
@@ -68,12 +68,15 @@ class _PatientPageState extends State<PatientPage> {
                   ],
                 ),
               ),
-              RaisedButton(
-                  child: Text("See nearby hospitals in GMap"),
-                  onPressed: () async {
-                    MapUtils.openMap(
-                        double.parse(loc[0]), double.parse(loc[1]));
-                  }),
+              ElevatedButton(
+                child: Text("See nearby hospitals in GMap"),
+                onPressed: () async {
+                  // MapUtils.openMap(
+                  //   double.parse(loc[0]),
+                  //   double.parse(loc[1]),
+                  // );
+                },
+              ),
               Container(
                 child: SingleChildScrollView(
                   child: Column(
@@ -124,8 +127,7 @@ class _PatientPageState extends State<PatientPage> {
                         icon: Icon(Icons.close),
                         onPressed: () {
                           Fluttertoast.showToast(
-                              msg:
-                              "Hospital rejected",
+                              msg: "Hospital rejected",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               textColor: Colors.white,

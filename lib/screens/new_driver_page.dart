@@ -167,22 +167,25 @@ class _NewDriversCodeState extends State<NewDriversCode> {
                     ],
                   )),
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                RaisedButton(
-                    child: Text("Cancel"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-                RaisedButton(
-                    child: Text("Add Driver"),
-                    onPressed: () {
-                      Fluttertoast.showToast(
-                          msg: "Driver added",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
-                      Navigator.pop(context);
-                    })
+                ElevatedButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ElevatedButton(
+                  child: Text("Add Driver"),
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                      msg: "Driver added",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                    Navigator.pop(context);
+                  },
+                ),
               ])
             ],
           ),
